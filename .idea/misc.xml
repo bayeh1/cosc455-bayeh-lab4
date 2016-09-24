@@ -62,7 +62,7 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ScaladocSettings">
-    <option name="outputDir" value="H:\COSC455\Lab4\SimpleCompiler(1)\SimpleCompiler\docs" />
+    <option name="outputDir" value="$PROJECT_DIR$/docs" />
     <option name="additionalFlags" value="" />
     <option name="maxHeapSize" value="" />
     <option name="docTitle" value="SimpleCompiler documentation" />

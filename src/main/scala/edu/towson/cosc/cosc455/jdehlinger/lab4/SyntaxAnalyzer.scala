@@ -8,6 +8,8 @@ class SyntaxAnalyzer {
   val VERBS : List[String] = List("ates", "lovez", "hatez")
   val NOUNS : List[String] = List("kat", "dawg", "rat")
   val ADJECTIVES: List[String] = List("fat", "hungry", "happy", "mean")
+  val ADVERBS: List[String] = List("accidently","quickly","secretly")
+
 
   // Flag for errors and helper methods
   var errorFound : Boolean = false
@@ -16,15 +18,16 @@ class SyntaxAnalyzer {
   def getError : Boolean = errorFound
 
 
-  // This method implements the BNF rule for a sentence <S> ::= <NP> <V> <NP>
+  // This method implements the BNF rule for a sentence <S> ::= <NP> <ADV>||<V>  <NP>
   def Sentence() = {
     resetError()
     if (!errorFound) NounPhrase()
-    if(!errorFound) Verb()
-    if(!errorFound) NounPhrase()
+    if (!errorFound) Adverb()
+    if (!errorFound) Verb()
+    if (!errorFound) NounPhrase()
   }
 
-  // This method implements the BNF rule for a noun phrase <NP> ::= <A> <N>
+  // This method implements the BNF rule for a noun phrase <NP> ::= <A> <ADJ> <N>
   def NounPhrase() = {
     if(!errorFound) Article()
     if(!errorFound) Adjective()
@@ -35,10 +38,10 @@ class SyntaxAnalyzer {
   def Verb() = {
     if (VERBS contains Compiler.currentToken)
       Compiler.Scanner.getNextToken()
-    else {
+   /*else {
       println("SYNTAX ERROR - A verb was expected when '" + Compiler.currentToken + "' was found.")
       setError()
-    }
+    }*/
   }
 
   // This method implements the BNF rule for a noun <N> ::= dawg | kat | rat
@@ -61,7 +64,7 @@ class SyntaxAnalyzer {
       }
   }
 
-  // This method implements the BNF rule for an article <N> ::= teh | a
+  // This method implements the BNF rule for an adjective <N> ::= fat  | hungry | mean |happy
   def Adjective() = {
     if (ADJECTIVES contains Compiler.currentToken)
       Compiler.Scanner.getNextToken()
@@ -69,5 +72,14 @@ class SyntaxAnalyzer {
       println("SYNTAX ERROR - An adjective was expected when '" + Compiler.currentToken + "' was found.")
       setError()
     }
+  }
+  // This method implements the BNF rule for an adverb <N> ::= accidently | quickly | secretly
+  def Adverb() = {
+    if (ADVERBS contains Compiler.currentToken)
+      Compiler.Scanner.getNextToken()
+    /*else {
+      println("SYNTAX ERROR - An adverb was expected when '" + Compiler.currentToken + "' was found.")
+      setError()
+    }*/
   }
 }

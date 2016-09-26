@@ -18,5 +18,9 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="simplecompiler" target="" />
+      <module name="simplecompiler-build" target="" />
+    </bytecodeTargetLevel>
   </component>
 </project>
